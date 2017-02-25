@@ -33,9 +33,18 @@ class Fraction:
 
     return firstnum == secondnum
 
+  def __mul__(self, other):
+    num = self.num * other.num
+    den = self.den * other.den
+    
+    common = gcd(num, den)
+    
+    return Fraction(num // common, den // common)
+    
+    
 x = Fraction(1,2)
 y = Fraction(2,3)
-print(x+y)
+
+print(x + y)
 print(x == y)
-x.show()
-y.show()
+print(x * y)
