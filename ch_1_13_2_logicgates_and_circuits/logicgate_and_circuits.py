@@ -96,7 +96,7 @@ class NotGate(UnaryGate):
     a = self.getPin()
     
     return (not a)
-
+   
 class Connector:
   
   def __init__(self, fgate, tgate):
