@@ -1,104 +1,129 @@
-def gcd(m,n):
-  while m % n != 0:
-    oldm = m
-    oldn = n
+"""Fraction class."""
 
-    m = oldn
-    n = oldm % oldn
-  return n
+
+def gcd(m, n):
+    """Compute the GCD of m & n."""
+    while m % n != 0:
+        oldm = m
+        oldn = n
+        m = oldn
+        n = oldm % oldn
+
+    return n
+
 
 class Fraction:
-  def __init__(self, top, bottom):
-    if isinstance(top, int) and isinstance(bottom, int):
-        common = gcd(top, bottom)
-        self.num = top // common
-        self.den = bottom // common
-    else:
-        raise ValueError("Fraction must have an integer numerator and denominator.")
+    """Fraction class."""
 
-  def __str__(self):
-    return str(self.num)+"/"+str(self.den)
+    def __init__(self, top, bottom):
+        """Initialization of the numerator and denominator."""
+        if isinstance(top, int) and isinstance(bottom, int):
+            common = gcd(top, bottom)
+            self.num = top // common
+            self.den = bottom // common
+        else:
+            raise ValueError("Fraction must have an integer numerator and \
+                              denominator.")
 
-  def show(self):
-    print(self.num,"/",self.den)
+    def __str__(self):
+        """String overloading for printing."""
+        return str(self.num) + "/" + str(self.den)
 
-  def __add__(self,otherfraction):
-    newnum = self.num * otherfraction.den + \
-             self.den * otherfraction.num
+    def show(self):
+        """Show method for printing."""
+        print(self.num, "/", self.den)
 
-    newden = self.den * otherfraction.den
-    common = gcd(newnum, newden)
+    def __add__(self, otherfraction):
+        """Overloaded add method for adding fractions."""
+        newnum = self.num * otherfraction.den + self.den * otherfraction.num
 
-    return Fraction(newnum//common,newden//common)
+        newden = self.den * otherfraction.den
+        common = gcd(newnum, newden)
 
-  def __radd__(self, other):
-      otherNum = other * self.den
+        return Fraction(newnum//common, newden//common)
 
-      newnum = self.num + otherNum
-      common = gcd(newnum, self.den)
+    def __radd__(self, other):
+        """Overloaded reverse add 1 + X."""
+        if not isinstance(other, int):
+            raise ValueError("Fractions can only be added with integers.")
 
-      return Fraction(newnum // common, self.den // common)
+        otherNum = other * self.den
 
-  def __iadd__(self, other):
-      otherNum = other * self.den
+        newnum = self.num + otherNum
+        common = gcd(newnum, self.den)
 
-      newnum = self.num + otherNum
-      common = gcd(newnum, self.den)
+        return Fraction(newnum // common, self.den // common)
 
-      return Fraction(newnum // common, self.den // common)
+    def __iadd__(self, other):
+        """Overloading iadd for sum()."""
+        otherNum = other * self.den
 
-  def __eq__(self, other):
-    firstnum = self.num * other.den
-    secondnum = other.num * self.den
+        newnum = self.num + otherNum
+        common = gcd(newnum, self.den)
 
-    return firstnum == secondnum
+        return Fraction(newnum // common, self.den // common)
 
-  def __mul__(self, other):
-    num = self.num * other.num
-    den = self.den * other.den
+    def __eq__(self, other):
+        """Overloading equal to for comparing fractions."""
+        firstnum = self.num * other.den
+        secondnum = other.num * self.den
 
-    common = gcd(num, den)
+        return firstnum == secondnum
 
-    return Fraction(num // common, den // common)
+    def __mul__(self, other):
+        """Overloading multiplication."""
+        num = self.num * other.num
+        den = self.den * other.den
 
-  def __truediv__(self, other):
-    num = self.num * other.den
-    den = self.den * other.num
+        common = gcd(num, den)
 
-    common = gcd(num, den)
+        return Fraction(num // common, den // common)
 
-    return Fraction(num // common, den // common)
+    def __truediv__(self, other):
+        """Overloading true division."""
+        num = self.num * other.den
+        den = self.den * other.num
 
-  def __sub__(self, other):
-    num = self.num * other.den - \
-          other.num * self.den
+        common = gcd(num, den)
 
-    den = self.den * other.den
+        return Fraction(num // common, den // common)
 
-    common = gcd (num, den)
+    def __sub__(self, other):
+        """Overloading subtraction."""
+        num = self.num * other.den - other.num * self.den
+        den = self.den * other.den
 
-    return Fraction(num // common, den // common)
+        common = gcd(num, den)
 
-  def __gt__(self, other):
-    return (self.num * other.den) > (other.num * self.den)
+        return Fraction(num // common, den // common)
 
-  def __ge__(self, other):
-    return (self.num * other.den) >= (other.num * self.den)
+    def __gt__(self, other):
+        """Overloading greater than."""
+        return (self.num * other.den) > (other.num * self.den)
 
-  def __lt__(self, other):
-    return (self.num * other.den) < (other.num * self.den)
+    def __ge__(self, other):
+        """Overloading greater than or equal to."""
+        return (self.num * other.den) >= (other.num * self.den)
 
-  def __le__(self, other):
-    return (self.num * other.den) <= (other.num * self.den)
+    def __lt__(self, other):
+        """Overloading less than."""
+        return (self.num * other.den) < (other.num * self.den)
 
-  def __ne__(self, other):
-    return (self.num != other.num) or (self.den != other.den)
+    def __le__(self, other):
+        """Overloading less than or equal to."""
+        return (self.num * other.den) <= (other.num * self.den)
 
-  def getNum(self):
-      return self.num
+    def __ne__(self, other):
+        """Overloading not equal to."""
+        return (self.num != other.num) or (self.den != other.den)
 
-  def getDen(self):
-      return self.den
+    def getNum(self):
+        """Get the numerator of the fraction."""
+        return self.num
+
+    def getDen(self):
+        """Get the denominator of the fraction."""
+        return self.den
 
 
 x = Fraction(1, 3)
