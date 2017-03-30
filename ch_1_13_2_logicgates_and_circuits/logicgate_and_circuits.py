@@ -135,6 +135,21 @@ class NandGate(AndGate):
         return not (super().performGateLogic())
 
 
+class XorGate(BinaryGate):
+    """XOR Gate Class."""
+
+    def __init__(self, n):
+        """Initializing the parent classes data items."""
+        BinaryGate.__init__(self, n)
+
+    def performGateLogic(self):
+        """Perform gate logic."""
+        a = self.getPinA()
+        b = self.getPinB()
+
+        return ((a == 1 and b == 0) or (a == 0 and b == 1))
+
+
 class Connector:
     """Connector Gate Class."""
 
@@ -171,6 +186,9 @@ def main():
     Connector(g5, g7)
     Connector(g6, g7)
     print(g7.getOutput())
+
+    g8 = XorGate("G8")
+    print(g8.getOutput())
 
 
 main()

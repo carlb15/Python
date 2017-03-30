@@ -29,6 +29,10 @@ class Fraction:
         """String overloading for printing."""
         return str(self.num) + "/" + str(self.den)
 
+    def __repr__(self):
+        """Repr overloading."""
+        return "%s(%r, %r)" % (self.__class__, self.num, self.den)
+
     def show(self):
         """Show method for printing."""
         print(self.num, "/", self.den)
@@ -148,3 +152,4 @@ print(1 + x)
 x += 1
 print(x)
 print(sum([x, y]))
+print(repr(x))
