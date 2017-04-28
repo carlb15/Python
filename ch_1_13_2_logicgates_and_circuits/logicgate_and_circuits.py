@@ -150,6 +150,38 @@ class XorGate(BinaryGate):
         return ((a == 1 and b == 0) or (a == 0 and b == 1))
 
 
+
+class HalfAdder(XorGate, AndGate):
+    """Half Adder Class."""
+
+    def __init__(self, n):
+        """Initializing the parent classes data items."""
+        XorGate.__init__(self, n)
+        AndGate.__init__(self, n)
+
+        self.sum = XorGate.performGateLogic(self)
+        self.carry = AndGate.performGateLogic(self)
+
+        def performGateLogic(self):
+            """Perform half gate logic."""
+            return self.carry, self.sum
+
+
+class FullAdder(HalfAdder):
+    """Full Adder Class."""
+
+    def __init__(self, n):
+        """Initializing the parent classes data items."""
+        HalfAdder.__init__(self, n)
+
+        self.carry = AndGate.performGateLogic(self)
+        self.sum = XorGate.performGateLogic(self)
+
+    def performGateLogic(self):
+        """Perform half gate logic."""
+        return self.carry, self.sum
+
+
 class Connector:
     """Connector Gate Class."""
 
@@ -170,7 +202,7 @@ class Connector:
 
 
 def main():
-    """Testing Classes."""
+    """Testing Classes.
     g1 = AndGate("G1")
     g2 = AndGate("G2")
     g3 = OrGate("G3")
@@ -188,7 +220,9 @@ def main():
     print(g7.getOutput())
 
     g8 = XorGate("G8")
-    print(g8.getOutput())
+    print(g8.getOutput())"""
 
+    g9 = HalfAdder("G9")
+    print(g9.getOutput())
 
 main()
