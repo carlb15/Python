@@ -69,15 +69,41 @@ def infix_to_postfix(infix_str):
 
     empty_opstack(opstack, postfix_list)
 
-    return ''.join(postfix_list)
+    return ' '.join(postfix_list)
 
 
-assert(infix_to_postfix('A + B') == 'AB+')
-assert(infix_to_postfix('A * B + C * D') == 'AB*CD*+')
+def computeResult(op1, op2, operator):
+    if operator in '-':
+        return op1 - op2
+    elif operator in '+':
+        return op1 + op2
+    elif operator in '*':
+        return op1 * op2
+    return op1 / op2
+
+def evaluate_postfix_expr(postfixexpr):
+    operandStack = Stack()
+    postfixexpr = postfixexpr.split()
+
+    for token in postfixexpr:
+        if token.isdigit():
+            operandStack.push(int(token))
+        elif is_operator(token):
+            op2 = operandStack.pop()
+            op1 = operandStack.pop()
+            result = computeResult(int(op1), int(op2), token)
+            operandStack.push(result)
+    return operandStack.pop()
+
+
+assert(infix_to_postfix('A + B') == 'A B +')
+assert(infix_to_postfix('A * B + C * D') == 'A B * C D * +')
 assert(infix_to_postfix('( A + B ) * C - ( D - E ) * ( F + G )')
-                         == 'AB+C*DE-FG+*-')
+                         == 'A B + C * D E - F G + * -')
 print(infix_to_postfix("A * B + C * D"))
 print(infix_to_postfix("( A + B ) * C - ( D - E ) * ( F + G )"))
 print(infix_to_postfix("( A + B ) * ( C + D )"))
 print(infix_to_postfix("( A + B ) * C"))
 print(infix_to_postfix("A + B * C"))
+print(infix_to_postfix("1 + 2 * 3"))
+print(evaluate_postfix_expr("1 2 3 * +"))
