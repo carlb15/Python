@@ -3,6 +3,7 @@
 import json
 import requests
 import time
+import urllib
 
 TOKEN = "382586960:AAHBBBxzJ-ET98e9rIPSq3ZSWLDimxgexwI"
 URL = "https://api.telegram.org/bot{}/".format(TOKEN)
@@ -62,6 +63,7 @@ def get_last_chat_id_and_text(updates):
 
 def send_message(text, chat_id):
     """Send a message to the chat bot."""
+    text = urllib.parse.quote_plus(text)
     url = URL + "sendMessage?text={}&chat_id={}".format(text, chat_id)
     get_url(url)
 
@@ -70,7 +72,6 @@ def main():
     """Retrieve most recent messages from Telegram every 0.5 seconds."""
     last_update_id = None
     while True:
-        print("getting updates")
         updates = get_updates(last_update_id)
         if len(updates["result"]) > 0:
             last_update_id = get_last_update_id(updates) + 1
