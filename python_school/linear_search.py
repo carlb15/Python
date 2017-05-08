@@ -16,15 +16,12 @@ def linear_search(myList, item):
         if myList[position] == item:
             found = True
         position += 1
-    return found
+    return found, position
 
 
 if __name__ == "__main__":
-    assert(linear_search([1, 2, 3, 4], 1))
-    assert(not linear_search([1, 2, 3, 4], 10))
-    shopping = ['apples', 'bananas', 'chocolate', 'pasta']
-    item = input('What item do you want to find? ')
-    if linear_search(shopping, item):
-        print('Item %s is found.' % item)
-    else:
-        print('Item %s is not found.' % item)
+    print(linear_search([1, 2, 3, 4], 1))
+    print(linear_search([1, 2, 3, 4], 10))
+    print(linear_search([1, 2, 3, 4], 3))
+    print(linear_search([1, 2, 3, 4], 2))
+    print(linear_search([1, 2, 3, 4], -1))
