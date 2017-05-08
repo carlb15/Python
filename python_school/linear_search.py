@@ -16,12 +16,18 @@ def linear_search(myList, item):
         if myList[position] == item:
             found = True
         position += 1
+
+    if not found:
+        myList.append(item)
+
     return found, position
 
 
 if __name__ == "__main__":
-    print(linear_search([1, 2, 3, 4], 1))
-    print(linear_search([1, 2, 3, 4], 10))
-    print(linear_search([1, 2, 3, 4], 3))
-    print(linear_search([1, 2, 3, 4], 2))
-    print(linear_search([1, 2, 3, 4], -1))
+    myList = [1, 2, 3, 4]
+    print(linear_search(myList, 1))
+    print(linear_search(myList, 10))
+    print(linear_search(myList, 3))
+    print(linear_search(myList, 2))
+    print(linear_search(myList, -1))
+    print(linear_search(myList, -1))
