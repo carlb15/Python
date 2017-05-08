@@ -44,9 +44,9 @@ def echo_all(updates):
 
 def get_updates(offset = None):
     """Retrieve messages sent to the Chat Bot."""
-    url = URL + 'getUpdates'
+    url = URL + 'getUpdates?timeout=100'
     if offset:
-        url += "?offset={}".format(offset)
+        url += "&offset={}".format(offset)
     js = get_json_from_url(url)
     return js
 
@@ -70,6 +70,7 @@ def main():
     """Retrieve most recent messages from Telegram every 0.5 seconds."""
     last_update_id = None
     while True:
+        print("getting updates")
         updates = get_updates(last_update_id)
         if len(updates["result"]) > 0:
             last_update_id = get_last_update_id(updates) + 1
