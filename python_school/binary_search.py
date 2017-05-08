@@ -14,6 +14,7 @@ def binary_search(myList, item):
     leftIdx = 0
     rightIdx = len(myList) - 1
     found = False
+    numOfSearches = 0
 
     while leftIdx <= rightIdx and not found:
         middleIdx = (leftIdx + rightIdx) // 2
@@ -23,6 +24,9 @@ def binary_search(myList, item):
             rightIdx = middleIdx - 1
         else:
             leftIdx = middleIdx + 1
+        numOfSearches += 1
+
+    print("Number of searches required %d" % numOfSearches)
     return found
 
 
