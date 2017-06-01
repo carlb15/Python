@@ -8,9 +8,8 @@ class Queue():
         """Initialize the queue."""
         self.myList = []
 
-
     def enqueue(self, item):
-        """Adds a new item to the rear of the queue."""
+        """Add a new item to the rear of the queue."""
         """
         Run-time: O(n)
 
@@ -21,12 +20,11 @@ class Queue():
         """
         self.myList.insert(0, item)
 
-
     def dequeue(self):
-        """Removes the front item from the queue."""
+        """Remove the front item from the queue."""
         """
         Run-time: O(1)
-        
+
         Args: None
 
         Returns: Returns removed item.
@@ -36,9 +34,8 @@ class Queue():
 
         return self.myList.pop()
 
-
     def isEmpty(self):
-        """Tests to see whether the queue is empty."""
+        """Test to see whether the queue is empty."""
         """
         Args: None
 
@@ -46,9 +43,8 @@ class Queue():
         """
         return len(self.myList) == 0
 
-
     def size(self):
-        """Gets number of items in the queue."""
+        """Get number of items in the queue."""
         """
         Args: None
 
@@ -67,7 +63,7 @@ if __name__ == "__main__":
     myQueue.enqueue("hello")
     myQueue.enqueue('world')
     myQueue.enqueue(1.001011)
-    assert(myQueue.size() ==  6)
+    assert(myQueue.size() == 6)
     assert(not myQueue.isEmpty())
     assert(myQueue.dequeue() == 1)
     assert(myQueue.dequeue() == -1)
@@ -75,7 +71,7 @@ if __name__ == "__main__":
     assert(myQueue.dequeue() == 'hello')
     assert(myQueue.dequeue() == 'world')
     assert(myQueue.dequeue() == 1.001011)
-    assert(myQueue.dequeue() == None)
+    assert(myQueue.dequeue() is None)
     assert(myQueue.size() == 0)
     assert(myQueue.isEmpty())
     q = Queue()
