@@ -1,0 +1,1 @@
+"""Binary Search Code Rust."""
