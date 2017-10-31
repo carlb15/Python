@@ -87,3 +87,5 @@ ENV/
 
 # Rope project settings
 .ropeproject
+eval_rat_mask.py
+eval_band_mask.py
