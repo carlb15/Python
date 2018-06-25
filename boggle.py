@@ -10,7 +10,7 @@ class Graph:
       self.val = v
       self.adj = []
 
-def findWords(board):
+def findWords(board=board):
   def search(node, word, visited):
     if node not in visited:
       visited.append(node)
@@ -33,5 +33,6 @@ def findWords(board):
       	result.append(word)
   return result
   
-  
-      
+
+if __name__=="__main__":
+  print(findWords())
